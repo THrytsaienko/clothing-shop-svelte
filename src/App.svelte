@@ -1,5 +1,4 @@
 <script lang="ts">
-	export let name: string;
 	import Header from "./components/header/Header.svelte";
 </script>
 
@@ -8,16 +7,15 @@
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 20px 60px;
-		max-width: 240px;
-		margin: 0 auto;
+	:global(body) {
 		font-family: 'Open Sans Condensed', sans-serif;
+		padding: 20px 60px;
 	}
-
+	main {
+		width: 100%;
+	}
 	@media screen and (max-width: 800px){
-		main {
+		:global(body) {
 			padding: 10px;
 		}
 	}
