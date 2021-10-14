@@ -1,19 +1,18 @@
 <script lang="ts">
 	import { Router, Route } from "svelte-navigator";
 	import Header from "./components/header/Header.svelte";
-	import Homepage from "./pages/homepage/Homepage.svelte";
+	import HomePage from "./pages/homepage/HomePage.svelte";
+	import ShopPage from "./pages/shop/ShopPage.svelte";
 </script>
 
 <Router>
 	<main>
 		<Header />
 		<Route path="/">
-			<Homepage />
+			<HomePage />
 		</Route>
 		<Route path='/shop'>
-			<div>
-				<h1>HATS PAGE </h1>
-			</div>
+			<ShopPage />
 		</Route>
 		<Route path='/signin'>
 			<div>
