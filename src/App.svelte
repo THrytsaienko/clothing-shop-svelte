@@ -1,12 +1,27 @@
 <script lang="ts">
+	import { Router, Route } from "svelte-navigator";
 	import Header from "./components/header/Header.svelte";
 	import Homepage from "./pages/homepage/Homepage.svelte";
 </script>
 
-<main>
-	<Header />
-	<Homepage />
-</main>
+<Router>
+	<main>
+		<Header />
+		<Route path="/">
+			<Homepage />
+		</Route>
+		<Route path='/shop'>
+			<div>
+				<h1>HATS PAGE </h1>
+			</div>
+		</Route>
+		<Route path='/signin'>
+			<div>
+				<h1>LOGIN PAGE </h1>
+			</div>
+		</Route>
+	</main>
+</Router>
 
 <style>
 	:global(body) {
