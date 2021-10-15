@@ -4,16 +4,16 @@
 </script>
 
 <div class="header">
-    <div class="logo">
+    <div class="logo-container">
         <Link to="/">
             <Logo />
         </Link>
     </div>
-    <nav>
-        <Link class="menu-link" to='/shop'>SHOP</Link>
-        <Link class="menu-link" to='/shop'>CONTACT</Link>
-        <Link class="menu-link" to='/signin'>SIGN IN</Link>
-    </nav>
+    <div class="options">
+        <Link class="option" to='/shop'>SHOP</Link>
+        <Link class="option" to='/shop'>CONTACT</Link>
+        <Link class="option" to='/signin'>SIGN IN</Link>
+    </div>
 </div>
 
 <style>
@@ -25,13 +25,13 @@
         justify-content: space-between;
     }
 
-    .logo > :global(a)  {
+    .logo-container {
         height: 100%;
         width: 70px;
         padding: 25px;
     }
 
-    nav {
+    .options {
         width: 50%;
         height: 100%;
         display: flex;
@@ -39,10 +39,14 @@
         justify-content: flex-end;
     }
 
-    nav > :global(a) {
+    .options > :global(a) {
         padding: 10px 15px;
         cursor: pointer;
         text-decoration: none;
         color: #000;
+    }
+
+    .option {
+        padding: 10px 15px;
     }
 </style>

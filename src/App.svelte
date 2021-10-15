@@ -3,6 +3,7 @@
 	import Header from "./components/header/Header.svelte";
 	import HomePage from "./pages/homepage/HomePage.svelte";
 	import ShopPage from "./pages/shop/ShopPage.svelte";
+	import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/SignInAndSignUpPage.svelte";
 </script>
 
 <Router>
@@ -15,9 +16,7 @@
 			<ShopPage />
 		</Route>
 		<Route path='/signin'>
-			<div>
-				<h1>LOGIN PAGE </h1>
-			</div>
+			<SignInAndSignUpPage />
 		</Route>
 	</main>
 </Router>
