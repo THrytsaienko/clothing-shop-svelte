@@ -43,6 +43,9 @@
 		font-family: 'Open Sans Condensed', sans-serif;
 		padding: 20px 60px;
 	}
+	:global(*) {
+		box-sizing: border-box;
+	}
 	main {
 		width: 100%;
 	}
