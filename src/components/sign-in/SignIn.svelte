@@ -1,11 +1,20 @@
 <script>
     import CustomButton from "../custom-button/CustomButton.svelte";
     import FormInput from "../form-input/FormInput.svelte";
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
+    import { signInWithGoogle } from '../../firebase/firebase.utils';
+    const handleSubmit = event => {
+        event.preventDefault();
+        email = '';
+        password = '';
+    };
     const handleChange = (event) => {
         const { value, name } = event.detail;
+        if (name === 'email') {
+            email = value;
+        }
+        if (name === 'password') {
+            password = value;
+        }
     }
     let email;
     let password;
@@ -32,14 +41,29 @@
                 label='password'
                 required
         />
-        <CustomButton type='submit'>Sign in</CustomButton>
+        <div class='buttons'>
+            <CustomButton type='submit'> Sign in </CustomButton>
+            <CustomButton on:click={() => signInWithGoogle} isGoogleSignIn>
+                Sign in with Google
+            </CustomButton>
+        </div>
     </form>
 </div>
 
 <style>
     .sign-in {
         width: 30vw;
+        width: 380px;
         display: flex;
         flex-direction: column;
+    }
+
+    .title {
+        margin: 10px 0;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
     }
 </style>

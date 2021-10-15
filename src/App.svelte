@@ -4,6 +4,23 @@
 	import HomePage from "./pages/homepage/HomePage.svelte";
 	import ShopPage from "./pages/shop/ShopPage.svelte";
 	import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/SignInAndSignUpPage.svelte";
+	import { onMount, onDestroy } from 'svelte';
+	import { auth } from './firebase/firebase.utils';
+
+	let photos = [];
+	let currentUser = null;
+	let unsubscribeFromAuth = null;
+
+	onMount(() => {
+		unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+			currentUser = user;
+			console.log(user);
+		});
+	})
+
+	onDestroy(() => {
+		unsubscribeFromAuth();
+	})
 </script>
 
 <Router>

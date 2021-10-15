@@ -1,6 +1,8 @@
 <script lang="ts">
     import { Link } from "svelte-navigator";
     import Logo from "../logo/Logo.svelte";
+    import { auth } from '../../firebase/firebase.utils';
+    export let currentUser = null;
 </script>
 
 <div class="header">
@@ -12,7 +14,13 @@
     <div class="options">
         <Link class="option" to='/shop'>SHOP</Link>
         <Link class="option" to='/shop'>CONTACT</Link>
-        <Link class="option" to='/signin'>SIGN IN</Link>
+        {#if currentUser}
+            <div class="option" on:click={() => auth.signOut()}>
+                SIGN OUT
+            </div>
+        {:else}
+            <Link class="option" to='/signin'>SIGN IN</Link>
+        {/if}
     </div>
 </div>
 
@@ -48,5 +56,6 @@
 
     .option {
         padding: 10px 15px;
+        cursor: pointer;
     }
 </style>

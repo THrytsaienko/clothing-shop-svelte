@@ -1,4 +1,8 @@
-<button class='custom-button'>
+<script>
+    export let isGoogleSignIn;
+</script>
+
+<button class={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}>
     <slot></slot>
 </button>
 
@@ -25,4 +29,14 @@
          color: black;
          border: 1px solid black;
      }
+
+    .custom-button.google-sign-in {
+        background-color: #4285f4;
+        color: white;
+    }
+
+    .custom-button.google-sign-in:hover {
+         background-color: #357ae8;
+         border: none;
+    }
 </style>
