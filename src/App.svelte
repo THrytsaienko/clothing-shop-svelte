@@ -1,22 +1,32 @@
 <script lang="ts">
 	import { Router, Route } from "svelte-navigator";
+	import { writable } from 'svelte/store';
 	import Header from "./components/header/Header.svelte";
 	import HomePage from "./pages/homepage/HomePage.svelte";
 	import ShopPage from "./pages/shop/ShopPage.svelte";
 	import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/SignInAndSignUpPage.svelte";
-	import { onMount, onDestroy } from 'svelte';
-	import { auth } from './firebase/firebase.utils';
+	import { onMount, onDestroy, setContext } from 'svelte';
+	import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 	let photos = [];
-	let currentUser = null;
+	let currentUser = writable(null);
 	let unsubscribeFromAuth = null;
 
 	onMount(() => {
-		unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-			currentUser = user;
-			console.log(user);
+		unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+			if (userAuth) {
+				const userRef = await createUserProfileDocument(userAuth);
+				currentUser = userAuth;
+				userRef.onSnapshot(snapShot => {
+					currentUser = {
+						id: snapShot.id,
+						...snapShot.data()
+					}
+				});
+			}
 		});
 	})
+	setContext('currentUser', currentUser);
 
 	onDestroy(() => {
 		unsubscribeFromAuth();

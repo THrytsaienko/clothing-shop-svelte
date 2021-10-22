@@ -1,10 +1,17 @@
 <script>
     export let isGoogleSignIn;
+    export let signInWithGoogle;
 </script>
 
-<button class={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}>
-    <slot></slot>
-</button>
+{#if (isGoogleSignIn)}
+    <button on:click|preventDefault={signInWithGoogle} class='google-sign-in custom-button'>
+        <slot></slot>
+    </button>
+{:else}
+    <button class='custom-button'>
+        <slot></slot>
+    </button>
+{/if}
 
 <style>
     .custom-button {

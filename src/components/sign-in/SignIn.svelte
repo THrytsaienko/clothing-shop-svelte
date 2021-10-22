@@ -3,7 +3,6 @@
     import FormInput from "../form-input/FormInput.svelte";
     import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
     const handleSubmit = async event => {
-        event.preventDefault();
         try {
             await auth.signInWithEmailAndPassword(email, password);
             email = '';
@@ -12,10 +11,6 @@
             console.log(error);
         }
     };
-    const google = () => {
-        console.log('signInWithGoogle');
-        // signInWithGoogle();
-    }
     const handleChange = (event) => {
         const { value, name } = event.detail;
         if (name === 'email') {
@@ -52,7 +47,7 @@
         />
         <div class='buttons'>
             <CustomButton type='submit'> Sign in </CustomButton>
-            <CustomButton type='button' on:click={signInWithGoogle} isGoogleSignIn>
+            <CustomButton type='button' signInWithGoogle={signInWithGoogle} isGoogleSignIn>
                 Sign in with Google
             </CustomButton>
         </div>

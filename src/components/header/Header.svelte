@@ -1,8 +1,11 @@
 <script lang="ts">
+    import { getContext } from 'svelte';
     import { Link } from "svelte-navigator";
     import Logo from "../logo/Logo.svelte";
     import { auth } from '../../firebase/firebase.utils';
-    export let currentUser = null;
+
+    let currentUser;
+    currentUser = getContext('currentUser');
 </script>
 
 <div class="header">
